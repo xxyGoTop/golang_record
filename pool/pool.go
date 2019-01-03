@@ -40,6 +40,9 @@ type Pool struct {
 
 	// lock mutex once
 	once sync.Once
+
+	// work expiration
+	expiryDuration time.Duration
 }
 
 // 像这个pool提交个任务
@@ -123,4 +126,29 @@ func (p *Pool) putWorker(worker *Worker) {
 
 	p.workers = append(p.workers, worker)
 	p.cond.Signal()
+}
+
+// 创建一个pool
+func NewPool(size, expiration int) *Pool {
+	return NewTimingPool(size, expiration)
+}
+
+func NewTimingPool(size, expiry int) *Pool {
+	if size < 0 {
+		return nil
+	}
+
+	if expiry < 0 {
+		return nil
+	}
+
+	p := &Pool{
+		capacity:       int32(size),
+		release:        make(chan sig, 1),
+		expiryDuration: time.Duration(expiry) * time.Second,
+	}
+
+	p.cond = sync.NewCond(&p.lock)
+
+	return p
 }

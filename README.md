@@ -10,3 +10,11 @@
 >- 若有空闲的工作协程，直接取出去处理任务，无则新增，直到最大容量，超过最大容量就等待worker的释放
 >- 多协程操作需加锁
 >- 原子操作 确保执行不可中断
+
+### stack (模拟栈进栈出)
+```
+//声明
+stack := NewStack(0)
+stack.Push(map[int]string{1: "string"})
+stack.Pop()
+```

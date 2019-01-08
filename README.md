@@ -18,3 +18,7 @@ stack := NewStack(0)
 stack.Push(map[int]string{1: "string"})
 stack.Pop()
 ```
+
+### networking (TCP数据传输)
+>- 普通字符串传输
+>- GOB 复杂类型数据传输

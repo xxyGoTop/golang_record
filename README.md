@@ -22,3 +22,7 @@ stack.Pop()
 ### networking (TCP数据传输)
 >- 普通字符串传输
 >- GOB 复杂类型数据传输
+
+### wasm2go (go的websammbly的使用)
+>- 两个示例
+>- http-server起一个web服务即可查看 (npm install -g http-server)

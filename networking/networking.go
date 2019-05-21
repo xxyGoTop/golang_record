@@ -1,5 +1,3 @@
-// TCP/IP networking connect
-
 package main
 
 import (
